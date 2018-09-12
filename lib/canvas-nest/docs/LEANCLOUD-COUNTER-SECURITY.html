@@ -1,0 +1,138 @@
+<p>Before you make the config, please upgrade your NexT version to v6.0.6 or greater.</p>
+<p>Please note the difference between <strong>site config file</strong> and <strong>theme config file</strong></p>
+<hr>
+<h1 id="Sign-up-to-Leancloud-and-create-an-app"><a href="#Sign-up-to-Leancloud-and-create-an-app" class="headerlink" title="Sign up to Leancloud and create an app"></a>Sign up to Leancloud and create an app</h1><ul>
+<li>Go to Leancloud website <a href="leancloud.cn">leancloud.cn</a> and sign up to Leancloud. Then login.</li>
+<li><p>Click <code>1</code> to enter the console:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/fc0c048a1e25dc3d10aa.jpg" alt="1"></p>
+</li>
+<li><p>Then click <code>1</code> to create an app:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/33a56b754753a5d34b01.jpg" alt="2"></p>
+</li>
+<li><p>Type your app name in <code>1</code> in the pop up window(eg. “test”), then choose <code>2</code>, which means developer’s plan, and then click <code>3</code> to create the app:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/649ccfc6f12015d1eefb.jpg" alt="3"></p>
+</li>
+</ul>
+<h1 id="Create-Counter-class-and-enable-plugin-in-NexT"><a href="#Create-Counter-class-and-enable-plugin-in-NexT" class="headerlink" title="Create Counter class and enable plugin in NexT"></a>Create Counter class and enable plugin in NexT</h1><ul>
+<li><p>Click <code>1</code>(app name) to enter the app manage page:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d0889df29841661e0b9e.jpg" alt="4"></p>
+</li>
+<li><p>then click <code>1</code> to create a class for counter:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/b0fbc81bd6c19fa09a46.jpg" alt="5"></p>
+</li>
+<li><p>Type <code>Counter</code> in the pop up window in <code>1</code>, check <code>2</code>, then click <code>3</code>:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/ae6154d6a55f02f11ebf.jpg" alt="6"></p>
+</li>
+<li><p>Click <code>1</code> to enter the app setting, then click <code>2</code>:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/9501a6372918dd9a8a92.jpg" alt="8"></p>
+</li>
+<li><p>Paste <code>App ID</code> and <code>App Key</code> to <strong>theme config file</strong><code>_config.yml</code> like this:</p>
+<pre><code class="yml"><span class="attr">leancloud_visitors:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+<span class="attr">  app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">  app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;&gt;</span>
+  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span>
+<span class="attr">  security:</span> <span class="literal">true</span>
+<span class="attr">  betterPerformance:</span> <span class="literal">false</span>
+</code></pre>
+</li>
+<li><p>Set domain whitelist: Click<code>1</code>, then type your domain into <code>2</code>(<strong>protocol, domain and port should be exactly the same</strong>):</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/0e537cc4bec2e185201d.jpg" alt="9"></p>
+</li>
+</ul>
+<h1 id="Deploy-web-engine-to-avoid-your-data-being-changed-illegally"><a href="#Deploy-web-engine-to-avoid-your-data-being-changed-illegally" class="headerlink" title="Deploy web engine to avoid your data being changed illegally"></a>Deploy web engine to avoid your data being changed illegally</h1><ul>
+<li><p>Click <code>1 -&gt; 2 -&gt; 3</code> by order</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d7056dfeeef7c5d66318.jpg" alt="10"></p>
+</li>
+<li><p>Click<code>1</code>:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/2737841bbc2bdd572ae0.jpg" alt="11"></p>
+</li>
+<li><p>In the pop up window, click <code>1</code> to choose type <code>Hook</code>, then choose<code>beforeUpdate</code> in <code>2</code>, choose <code>Counter</code> in <code>3</code>. Paste code below into <code>4</code>, then click <code>5</code> to save it:</p>
+<pre><code class="javascript"><span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">"Counter"</span>);
+<span class="keyword">if</span> (request.object.updatedKeys.indexOf(<span class="string">'time'</span>) !== <span class="number">-1</span>) {
+    <span class="keyword">return</span> query.get(request.object.id).then(<span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>{
+        <span class="keyword">if</span> (obj.get(<span class="string">"time"</span>) + <span class="number">1</span> !== request.object.get(<span class="string">"time"</span>)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> AV.Cloud.Error(<span class="string">'Invalid update!'</span>);
+        }
+    })
+}
+</code></pre>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/a8e13418ed1d9405315b.jpg" alt="12"></p>
+</li>
+<li><p>Click <code>1</code> to deploy after the message in the red rect shows up:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/ca56bf2e5fc2a1343565.jpg" alt="13"></p>
+</li>
+<li><p>Click <code>1</code> in the pop up：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/17548c13b3b23c71d845.jpg" alt="14"></p>
+</li>
+<li><p>Click <code>1</code> to close the pop up window after the message in the red rect shows up:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d2f50de6cefea9fd0ed3.jpg" alt="15"></p>
+</li>
+</ul>
+<h1 id="Set-access-control-for-your-database"><a href="#Set-access-control-for-your-database" class="headerlink" title="Set access control for your database"></a>Set access control for your database</h1><ul>
+<li><p>Open <strong>theme config file</strong><code>_config.yml</code>, set <code>leancloud_visitors: security</code> to <code>true</code>:</p>
+<pre><code class="yml"><span class="attr">leancloud_visitors:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+<span class="attr">  app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">  app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;&gt;</span>
+  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span>
+<span class="attr">  security:</span> <span class="literal">true</span>
+<span class="attr">  betterPerformance:</span> <span class="literal">false</span>
+</code></pre>
+<p><strong>Explaination for <code>betterPerformance</code>:</strong><br>Because the Leancloud developer’s plan has limits in requst thread amount and running time, counter number may be very slow to load in some times. If set <code>betterPerformance</code> to true, counter number will be displayed quickly by assuming the request is accepted normally.</p>
+</li>
+<li><p>Open cmd then switch to <strong>root path of site</strong>, type commands to install <code>hexo-leancloud-counter-security</code> plugin:</p>
+<pre><code>npm install hexo-leancloud-counter-security --save
+</code></pre></li>
+<li><p>Open <strong>site config file</strong><code>_config.yml</code>, add those config:</p>
+<pre><code class="yml"><span class="attr">leancloud_counter_security:</span>
+<span class="attr">  enable_sync:</span> <span class="literal">true</span>
+<span class="attr">  app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">  app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;</span>
+<span class="attr">  username:</span>
+<span class="attr">  password:</span>
+</code></pre>
+</li>
+<li><p>Type command:</p>
+<pre><code>hexo lc-counter register &lt;&lt;username&gt;&gt; &lt;&lt;password&gt;&gt;
+</code></pre><p>or</p>
+<pre><code>hexo lc-counter r &lt;&lt;username&gt;&gt; &lt;&lt;password&gt;&gt;
+</code></pre><p>Change <code>&lt;&lt;username&gt;&gt;</code> and <code>&lt;&lt;password&gt;&gt;</code> to your own username and password (no need to be the same as leancloud account). They will be used in the hexo deploying.</p>
+<ul>
+<li>Open <strong>site config file</strong><code>_config.yml</code>, change <code>&lt;&lt;username&gt;&gt;</code> and <code>&lt;&lt;password&gt;&gt;</code>to those you set above:<pre><code class="yml"><span class="attr">leancloud_counter_security:</span>
+<span class="attr">enable_sync:</span> <span class="literal">true</span>
+<span class="attr">app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;</span>
+<span class="attr">username:</span> <span class="string">&lt;&lt;your</span> <span class="string">username&gt;&gt;</span> <span class="comment"># will be asked while deploying if be left blank</span>
+<span class="attr">password:</span> <span class="string">&lt;&lt;your</span> <span class="string">password&gt;&gt;</span> <span class="comment"># recommend to leave it blank for security, will be asked while deploying if be left blank</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Add the deployer in the <code>deploy</code> of <strong>site config file</strong><code>_config.yml</code>:</p>
+<pre><code class="yml"><span class="attr">deploy:</span>
+  <span class="comment"># other deployer</span>
+<span class="attr">  - type:</span> <span class="string">leancloud_counter_security_sync</span>
+</code></pre>
+</li>
+<li><p>Return to the Leancloud console. Click <code>1 -&gt; 2</code>, check if there is a record added in the _User (the img below is using username “admin” for example):</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/99faa5a0e7160e66d506.jpg" alt="16"></p>
+</li>
+<li><p>Click <code>1 -&gt; 2 -&gt; 3</code> by order:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/b72a9e64579f5b71749d.jpg" alt="17"></p>
+</li>
+<li><p><del>Click <code>1</code>(add_fields), then choose <code>2</code>:</del>Do as below “create” setting(choose the user you create):</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/14a8cb37062693d768ad.jpg" alt="18"></p>
+</li>
+<li><p>click <code>1</code>(create), then choose <code>2</code>, type the username in <code>3</code>, then click <code>4 -&gt; 5</code>:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d91714cfd703ef42b94c.jpg" alt="19"></p>
+<p>Now your page should be similar to this img after finishing the step.</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/c05e7ec9218820baf412.jpg" alt="20"></p>
+</li>
+<li><p>Click <code>1</code>(delete), then choose <code>2</code>:</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/c37b6e20726cfb1d3197.jpg" alt="21"></p>
+</li>
+</ul>
+<p>Now the bug is fixed.</p>
+<hr>
+<p>See detailed version here: <a href="https://leaferx.online/2018/03/16/lc-security-en/">https://leaferx.online/2018/03/16/lc-security-en/</a></p>

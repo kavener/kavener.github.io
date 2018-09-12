@@ -1,0 +1,33 @@
+<h1 align="center">从 NexT v5.1.x 更新</h1>
+
+<p>在 5.1.x 版本和 6.0.x 版本之间没有很大的革命性改进。主版本号变更至 6 主要是因为：</p>
+<ol>
+<li>主仓库已从 <a href="https://github.com/iissnan/hexo-theme-next">iissnan 名下</a> 迁移至 <a href="https://github.com/theme-next">theme-next</a> 组织。</li>
+<li><code>next/source/lib</code> 目录下的绝大多数库被移出到了 <a href="https://github.com/theme-next">NexT 组织的外部仓库</a>中。</li>
+<li>第三方插件 <a href="https://github.com/willin/hexo-wordcount"><code>hexo-wordcount</code></a> 被 <a href="https://github.com/theme-next/hexo-symbols-count-time"><code>hexo-symbols-count-time</code></a> 所取代，因为 <code>hexo-symbols-count-time</code> 没有任何外部 nodejs 依赖、也没有会导致生成站点时的性能问题 <a href="https://github.com/willin/hexo-wordcount/issues/7">language filter</a>。</li>
+</ol>
+<p>推荐通过如下步骤从 v5 升级到 v6：</p>
+<ol>
+<li>并不修改原有的 <code>next</code> 目录，而只是复制部分 NexT 文件：<ol>
+<li><code>config.yml</code> 或 <code>next.yml</code>（如果你使用了<a href="DATA-FILES.md">数据文件</a>）。</li>
+<li>自定义的 CSS 配置，它们应在 <code>next/source/css/_custom/*</code> 和 <code>next/source/css/_variables/*</code> 中。</li>
+<li>自定义的排布配置，它们应在 <code>next/layout/_custom/*</code> 中。</li>
+<li>任何其它可能的附加自定义内容；为了定位它们，你可以通过某些工具在仓库间比较。</li>
+</ol>
+</li>
+<li>克隆新的 v6.x 仓库到任一异于 <code>next</code> 的目录（如 <code>next-reloaded</code>）：<pre><code class="sh">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next-reloaded
+</code></pre>
+ 如此，你可以在不修改原有的 NexT v5.1.x 目录的同时使用 <code>next-reloaded</code> 目录中的新版本主题。</li>
+<li><p>在 Hexo 的主配置文件中设置主题：</p>
+<pre><code class="yml"><span class="string">...</span>
+<span class="attr">theme:</span> <span class="string">next-reloaded</span>
+<span class="string">...</span>
+</code></pre>
+<p> 如此，你的 <code>next-reloaded</code> 主题将在生成站点时被加载。如果你遇到了任何错误、或只是不喜欢这一新版本，你可以随时切换回旧的 v5.1.x 版本。</p>
+</li>
+<li><p>更新语言配置</p>
+<p> 从 v6.0.3版本起，<code>zh-Hans</code>改名为<code>zh-CN</code>：<a href="https://github.com/theme-next/hexo-theme-next/releases/tag/v6.0.3">https://github.com/theme-next/hexo-theme-next/releases/tag/v6.0.3</a></p>
+<p> 升级到v6.0.3及以后版本的用户，需要显式修改<code>_config.xml</code>里的language配置，否则语言显示不正确。</p>
+</li>
+</ol>
+<p>关于第三方库的启用，参见<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/INSTALLATION.md#插件">这里</a>。</p>

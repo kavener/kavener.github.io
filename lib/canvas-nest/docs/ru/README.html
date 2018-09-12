@@ -1,0 +1,52 @@
+<div align="right">Язык: <a title="Английский" href="../../README.md">:us:</a><br><a title="Китайский" href="../../docs/zh-CN/README.md">:cn:</a><br>:ru:</div>
+
+<h1 id="e-x-T"><a href="#e-x-T" class="headerlink" title=" e x T"></a><div align="center"><a title="Перейти на сайт" href="https://theme-next.org"><img align="center" width="56" height="56" src="https://raw.githubusercontent.com/theme-next/hexo-theme-next/master/source/images/logo.svg?sanitize=true"></a> e x T</div></h1><p align="center">«NexT» — элегантная высококачественная тема под <a href="http://hexo.io">Hexo</a>. Сделана с нуля, с любовью.</p>
+
+<p align="center"><br>  <a href="https://www.codacy.com/app/theme-next/hexo-theme-next?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=theme-next/hexo-theme-next&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/72f7fe7609c2438a92069f448e5a341a" title="Project Grade"></a><br>  <a href="https://travis-ci.org/theme-next/hexo-theme-next?branch=master"><img src="https://travis-ci.org/theme-next/hexo-theme-next.svg?branch=master" title="Travis CI [Linux]"></a><br>  <a href="https://crwd.in/theme-next"><img src="https://d322cqt584bo4o.cloudfront.net/theme-next/localized.svg" title="Добавить или улучшить перевод за несколько секунд!"></a><br>  <a href="https://github.com/theme-next/hexo-theme-next/releases"><img src="https://badge.fury.io/gh/theme-next%2Fhexo-theme-next.svg"></a><br>  <a href="http://hexo.io"><img src="https://img.shields.io/badge/hexo-%3E%3D%203.5.0-blue.svg"></a><br>  <a href="https://github.com/theme-next/hexo-theme-next/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-%20AGPL-blue.svg"></a><br></p>
+
+<h2 id="Демо"><a href="#Демо" class="headerlink" title="Демо"></a>Демо</h2><ul>
+<li>:heart_decoration: Muse тема: <a href="https://leaferx.online">LEAFERx</a> | <a href="https://notes.wanghao.work">XiaMo</a> | <a href="https://oawan.me">OAwan</a></li>
+<li>:six_pointed_star: Mist тема: <a href="https://blog.zzbd.org">Jeff</a> | <a href="http://uchuhimo.me">uchuhimo</a> | <a href="http://www.ixirong.com">xirong</a></li>
+<li>:pisces: Pisces тема: <a href="http://notes.iissnan.com">Vi</a> | <a href="https://acris.me">Acris</a> | <a href="https://rainylog.com">Rainy</a></li>
+<li>:gemini: Gemini тема: <a href="https://almostover.ru">Ivan.Nginx</a> | <a href="https://raincal.com">Raincal</a> | <a href="https://dandyxu.me">Dandy</a></li>
+</ul>
+<p>Больше примеров «NexT» <a href="https://github.com/iissnan/hexo-theme-next/issues/119">здесь</a>.</p>
+<h2 id="Установка"><a href="#Установка" class="headerlink" title="Установка"></a>Установка</h2><p>Простейший вариант установки — склонировать весь репозиторий:</p>
+<pre><code class="sh">$ <span class="built_in">cd</span> hexo
+$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next
+</code></pre>
+<p>Или предлагаю почитать <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/ru/INSTALLATION.md">детальные инструкции по установке</a>, если вариант выше не устраивает.</p>
+<h2 id="Плагины"><a href="#Плагины" class="headerlink" title="Плагины"></a>Плагины</h2><p>В конфиге NexT’а теперь можно найти зависимости на каждый модуль, который был вынесен во внешние репозитории, которые могут быть найдены по <a href="https://github.com/theme-next">ссылке основной организации</a>.</p>
+<p>Например, Вы хотите использовать <code>fancybox</code> для своего сайта. Открываем конфиг NexT’а и находим:</p>
+<pre><code class="yml"><span class="comment"># Fancybox</span>
+<span class="comment"># Dependencies: https://github.com/theme-next/theme-next-fancybox</span>
+<span class="attr">fancybox:</span> <span class="literal">false</span>
+</code></pre>
+<p>Затем включаем параметр <code>fancybox</code> и переходим по ссылке «Dependencies» с дальнейшеми инструкциями по установке этого модуля.</p>
+<h2 id="Обновление"><a href="#Обновление" class="headerlink" title="Обновление"></a>Обновление</h2><p>Можно обновить до последней мастер-ветки следующей командой:</p>
+<pre><code class="sh">$ <span class="built_in">cd</span> themes/next
+$ git pull
+</code></pre>
+<p>А если всплывают ошибки во время обновления (что-то наподобии <strong>«Commit your changes or stash them before you can merge»</strong>), рекомендуется ознакомиться с особенностью хранения <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/ru/DATA-FILES.md">дата-файлов в Hexo</a>.\<br>Как бы то ни было, можно обойти ошибки при обновлении если «Закомитить», «Стэшнуть» или «Откатить» локальные изменения. Смотрим  <a href="https://stackoverflow.com/a/15745424/5861495">здесь</a> как это сделать.</p>
+<p><strong>Если нужно обновиться с версии v5.1.x на v6.0.x, читаем <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/ru/UPDATE-FROM-5.1.X.md">здесь</a>.</strong></p>
+<h2 id="Известные-баги"><a href="#Известные-баги" class="headerlink" title="Известные баги"></a>Известные баги</h2><p>Для тех, кто столкнулся с ошибкой <strong>«<a href="https://github.com/iissnan/hexo-theme-next/issues/1490">Error: Cannot find module ‘hexo-util’</a>»</strong>, следует проверить версию NPM.</p>
+<ul>
+<li><code>&gt; 3</code>: Всё равно не работает? Удалите директорию <code>node_modules</code> и переустановите с помощью <code>npm install</code>.</li>
+<li><code>&lt; 3</code>: Добавьте <code>hexo-util</code> принудительно командой <code>npm install --save-dev hexo-util</code> к основным пакетам с Hexo.</li>
+</ul>
+<h2 id="Содействие"><a href="#Содействие" class="headerlink" title="Содействие"></a>Содействие</h2><p>Приветсвуется любое содействие, не стесняйтесь сообщать «Баги», брать «Форки» и вливать «Пулы».</p>
+<h2 id="Обратная-связь"><a href="#Обратная-связь" class="headerlink" title="Обратная связь"></a>Обратная связь</h2><ul>
+<li>Задать вопрос на <a href="https://stackoverflow.com/questions/tagged/theme-next">Stack Overflow</a>.</li>
+<li>Запросить новую возможность на <a href="https://github.com/theme-next/hexo-theme-next/blob/master/.github/CONTRIBUTING.md">GitHub</a>.</li>
+<li>Голосовать за <a href="https://github.com/theme-next/hexo-theme-next/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc">популярные запросы возможностей</a>.</li>
+<li>Сообщить об ошибке в разделе <a href="https://github.com/theme-next/hexo-theme-next/issues">GitHub Issues</a>.</li>
+<li>Вступить в наши <a href="https://gitter.im/theme-next">Gitter</a> / <a href="https://riot.im/app/#/room/#NexT:matrix.org">Riot</a> / <a href="https://t.me/theme_next">Telegram</a> чаты.</li>
+<li>Подписаться на новости через <a href="https://t.me/theme_next_news">канал Telegram’а</a>.</li>
+</ul>
+<h2 id="Сторонние-приложения"><a href="#Сторонние-приложения" class="headerlink" title="Сторонние приложения"></a>Сторонние приложения</h2><ul>
+<li>:triangular_flag_on_post: <a title="Маркдаун Редактор под Hexo" href="https://github.com/zhuzhuyule/HexoEditor" target="_blank">HexoEditor</a></li>
+</ul>
+<!--[rel-image]: https://img.shields.io/github/release/theme-next/hexo-theme-next.svg-->
+<!--[rel-image]: https://badge.fury.io/gh/theme-next%2Fhexo-theme-next.svg-->
+<!--[mnt-image]: https://img.shields.io/maintenance/yes/2018.svg-->
+<!--[releases-url]: https://github.com/theme-next/hexo-theme-next/releases-->

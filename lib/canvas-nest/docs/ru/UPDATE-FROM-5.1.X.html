@@ -1,0 +1,15 @@
+<h1 align="center">Обновление из-под NexT v5.1.x</h1>
+
+<p>Между версиями 5.1.x и 6.0.x нет жёстких изменений. Версия сменилась на мажорную 6 по следующим причинам:</p>
+<ol>
+<li>Основной репозиторий перебазировался из профиля <a href="https://github.com/iissnan/hexo-theme-next">iissnan’а</a> в <a href="https://github.com/theme-next">theme-next</a> организацию.</li>
+<li>Большинство библиотек в <code>next/source/lib</code> директории были вынесены в <a href="https://github.com/theme-next">отдельные репозитории под организацией NexT</a>.</li>
+<li>3rd-party плагин <a href="https://github.com/willin/hexo-wordcount"><code>hexo-wordcount</code></a> был заменён на <a href="https://github.com/theme-next/hexo-symbols-count-time"><code>hexo-symbols-count-time</code></a> т.к. <code>hexo-symbols-count-time</code> не имеет никаких сторонних nodejs зависимостей, не имеет <a href="https://github.com/willin/hexo-wordcount/issues/7">языкового фильтра</a> что обеспечивает улучшенную производительность при генерации сайта.</li>
+</ol>
+<p>Поэтому, я предлагаю обновиться с версии 5 на версию 6 следующим способом:</p>
+<ol>
+<li>Вы не трогаете старую директорию <code>next</code>, а всего-лишь делаете резервные копии файлов NexT:\<br>1.1. <code>config.yml</code> или <code>next.yml</code> (если Вы использовали <a href="DATA-FILES.md">дата-файлы</a>).\<br>1.2. Пользовательских CSS-стилей, которые расположены в <code>next/source/css/_custom/*</code> и <code>next/source/css/_variables/*</code> директориях.\<br>1.3. Пользовательских layout-стилей, которые расположены в <code>next/layout/_custom/*</code>.\<br>1.4. Любые другие всевозможные пользовательские изменения, которые могут быть найдены любым инструментом для сравнения файлов.</li>
+<li>Склонировать новый v6.x репозиторий в любую другую директорию, отличную от <code>next</code>. Например, в директорию <code>next-reloaded</code>: <code>git clone https://github.com/theme-next/hexo-theme-next themes/next-reloaded</code>. Итак, нет необходимости трогать старую NexT 5.1.x директорию и можно работать с новой <code>next-reloaded</code>.</li>
+<li>Открываем главную Hexo-конфигурацию и устанавливаем параметр темы: <code>theme: next-reloaded</code>. Так Ваша директория <code>next-reloaded</code> должна грузиться при генерации. Если Вы будете наблюдать какие-либо баги или Вам попросту не нравится эта новая версия, в любой момент Вы можете использовать старую 5.1.x.</li>
+</ol>
+<p>А как активировать 3rd-party библиотеки, смотрим здесь <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/ru/INSTALLATION.md#%D0%9F%D0%BB%D0%B0%D0%B3%D0%B8%D0%BD%D1%8B">здесь</a>.</p>

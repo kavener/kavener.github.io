@@ -1,0 +1,142 @@
+<p>在配置前，请升级NexT至<strong>v6.0.6</strong>以上。</p>
+<p>在配置过程中请注意<strong>博客配置文件</strong>和<strong>主题配置文件</strong>的区别。</p>
+<hr>
+<h1 id="注册Leancloud并创建应用"><a href="#注册Leancloud并创建应用" class="headerlink" title="注册Leancloud并创建应用"></a>注册Leancloud并创建应用</h1><ul>
+<li>首先，前往Leancloud官网<a href="leancloud.cn">leancloud.cn</a>进行注册，并登陆。</li>
+<li><p>然后点击图示<code>1</code>处，进入控制台：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/fc0c048a1e25dc3d10aa.jpg" alt="1"></p>
+</li>
+<li><p>接着，点击图示<code>1</code>处，创建应用：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/33a56b754753a5d34b01.jpg" alt="2"></p>
+</li>
+<li><p>在弹出窗口<code>1</code>处输入应用名称（可随意输入，可更改，为演示方便取名为test），并选择<code>2</code>处“开发版”，然后点击<code>3</code>处创建：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/649ccfc6f12015d1eefb.jpg" alt="3"></p>
+</li>
+</ul>
+<p>到这里应用创建完成。</p>
+<h1 id="建立Counter类并在NexT中启用插件"><a href="#建立Counter类并在NexT中启用插件" class="headerlink" title="建立Counter类并在NexT中启用插件"></a>建立Counter类并在NexT中启用插件</h1><ul>
+<li><p>点击<code>1</code>处应用名称进入应用管理界面：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d0889df29841661e0b9e.jpg" alt="4"></p>
+</li>
+<li><p>如图，点击侧边栏<code>1</code>处创建Class：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/b0fbc81bd6c19fa09a46.jpg" alt="5"></p>
+</li>
+<li><p>在弹出窗口<code>1</code>处填入<code>Counter</code>，勾选<code>2</code>处无限制，并点击<code>3</code>处创建Class：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/ae6154d6a55f02f11ebf.jpg" alt="6"></p>
+</li>
+<li><p>此时类已创建完成。接下来点击图示<code>1</code>处进入设置，然后点击<code>2</code>处进入应用Key：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/9501a6372918dd9a8a92.jpg" alt="8"></p>
+</li>
+<li><p>粘贴<code>App ID</code>和<code>App Key</code>到<strong>NexT主题配置文件</strong><code>_config.yml</code>对应位置。此时配置文件应如下：</p>
+<pre><code class="yml"><span class="attr">leancloud_visitors:</span>
+<span class="attr">enable:</span> <span class="literal">true</span>
+<span class="attr">security:</span> <span class="literal">true</span>
+<span class="attr">app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;&gt;</span>
+</code></pre>
+</li>
+<li><p>设置Web安全域名确保域名调用安全。点击<code>1</code>处进入安全中心，然后在<code>2</code>处填写自己博客对应的域名（<strong>注意协议、域名和端口号需严格一致</strong>）：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/0e537cc4bec2e185201d.jpg" alt="9"></p>
+</li>
+</ul>
+<p>到这里内容均与Doublemine的<a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud">为NexT主题添加文章阅读量统计功能</a>这篇文章相同，只不过截图为新版的Leancloud的界面。</p>
+<h1 id="部署云引擎以保证访客数量不被随意篡改"><a href="#部署云引擎以保证访客数量不被随意篡改" class="headerlink" title="部署云引擎以保证访客数量不被随意篡改"></a>部署云引擎以保证访客数量不被随意篡改</h1><ul>
+<li><p>点击左侧<code>1</code>处云引擎，然后点击<code>2</code>处部署，再点击<code>3</code>处在线编辑：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d7056dfeeef7c5d66318.jpg" alt="10"></p>
+</li>
+<li><p>点击<code>1</code>处创建函数：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/2737841bbc2bdd572ae0.jpg" alt="11"></p>
+</li>
+<li><p>在弹出窗口选择<code>1</code>处<code>Hook</code>类型，然后<code>2</code>处选择<code>beforeUpdate</code>，<code>3</code>处选择刚才建立的<code>Counter</code>类。在<code>4</code>中粘贴下方代码后，点<code>5</code>处保存。</p>
+<pre><code class="javascript"><span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">"Counter"</span>);
+<span class="keyword">if</span> (request.object.updatedKeys.indexOf(<span class="string">'time'</span>) !== <span class="number">-1</span>) {
+    <span class="keyword">return</span> query.get(request.object.id).then(<span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>{
+        <span class="keyword">if</span> (obj.get(<span class="string">"time"</span>) + <span class="number">1</span> !== request.object.get(<span class="string">"time"</span>)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> AV.Cloud.Error(<span class="string">'Invalid update!'</span>);
+        }
+    })
+}
+</code></pre>
+<p>如图所示：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/a8e13418ed1d9405315b.jpg" alt="12"></p>
+</li>
+<li><p>点击保存后应出现类似红框处函数。此时点击<code>1</code>处部署：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/ca56bf2e5fc2a1343565.jpg" alt="13"></p>
+</li>
+<li><p>在弹出窗口点击<code>1</code>处部署：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/17548c13b3b23c71d845.jpg" alt="14"></p>
+</li>
+<li><p>等待出现红框处的成功部署信息后，点击<code>1</code>处关闭：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d2f50de6cefea9fd0ed3.jpg" alt="15"></p>
+</li>
+</ul>
+<p>至此云引擎已成功部署，任何非法的访客数量更改请求都将失败。</p>
+<h1 id="进一步设置权限"><a href="#进一步设置权限" class="headerlink" title="进一步设置权限"></a>进一步设置权限</h1><ul>
+<li><p>打开<strong>NexT主题配置文件</strong><code>_config.yml</code>，将leancloud_visitors下的security设置为true（如没有则新增）：</p>
+<pre><code class="yml"><span class="attr">leancloud_visitors:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+<span class="attr">  app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">  app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;&gt;</span>
+  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span>
+<span class="attr">  security:</span> <span class="literal">true</span>
+<span class="attr">  betterPerformance:</span> <span class="literal">false</span>
+</code></pre>
+<p><strong>对<code>betterPerformance</code>选项的说明：</strong><br>由于Leancloud免费版的云引擎存在请求线程数和运行时间限制以及休眠机制，很多时候访客数量加载会很慢。如果设置<code>betterPerformance</code>为<code>true</code>，则网页则会在提交请求之前直接显示访客人数为查询到的人数+1，以增加用户体验。</p>
+</li>
+<li><p>打开cmd并切换至<strong>博客根目录</strong>，键入以下命令以安装<code>hexo-leancloud-counter-security</code>插件：</p>
+<pre><code>npm install hexo-leancloud-counter-security --save
+</code></pre></li>
+<li><p>打开<strong>博客配置文件</strong><code>_config.yml</code>，新增以下配置：</p>
+<pre><code class="yml"><span class="attr">leancloud_counter_security:</span>
+<span class="attr">  enable_sync:</span> <span class="literal">true</span>
+<span class="attr">  app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">  app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;</span>
+<span class="attr">  username:</span>
+<span class="attr">  password:</span>
+</code></pre>
+</li>
+<li><p>在相同目录键入以下命令：</p>
+<pre><code>hexo lc-counter register &lt;&lt;username&gt;&gt; &lt;&lt;password&gt;&gt;
+</code></pre><p>或</p>
+<pre><code>hexo lc-counter r &lt;&lt;username&gt;&gt; &lt;&lt;password&gt;&gt;
+</code></pre><p>将<code>&lt;&lt;username&gt;&gt;</code>和<code>&lt;&lt;password&gt;&gt;</code>替换为你自己的用户名和密码（不必与leancloud的账号相同）。此用户名和密码将在hexo部署时使用。</p>
+<ul>
+<li>打开<strong>博客配置文件</strong><code>_config.yml</code>，将<code>&lt;&lt;username&gt;&gt;</code>和<code>&lt;&lt;password&gt;&gt;</code>替换为你刚刚设置的用户名和密码：<pre><code class="yml"><span class="attr">leancloud_counter_security:</span>
+<span class="attr">enable_sync:</span> <span class="literal">true</span>
+<span class="attr">app_id:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">id&gt;&gt;</span>
+<span class="attr">app_key:</span> <span class="string">&lt;&lt;your</span> <span class="string">app</span> <span class="string">key&gt;</span>
+<span class="attr">username:</span> <span class="string">&lt;&lt;your</span> <span class="string">username&gt;&gt;</span> <span class="comment">#如留空则将在部署时询问</span>
+<span class="attr">password:</span> <span class="string">&lt;&lt;your</span> <span class="string">password&gt;&gt;</span> <span class="comment">#建议留空以保证安全性，如留空则将在部署时询问</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>在<strong>博客配置文件</strong><code>_config.yml</code>的<code>deploy</code>下添加项：</p>
+<pre><code class="yml"><span class="attr">deploy:</span>
+  <span class="comment"># other deployer</span>
+<span class="attr">  - type:</span> <span class="string">leancloud_counter_security_sync</span>
+</code></pre>
+</li>
+<li><p>返回Leancloud控制台的应用内。依次点击<code>1</code> <code>2</code>，检查_User表中是否出现一条记录（图示以用户名为admin为例）：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/99faa5a0e7160e66d506.jpg" alt="16"></p>
+</li>
+<li><p>点击<code>1</code>处进入Counter表，依次点击<code>2</code> <code>3</code>，打开权限设置：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/b72a9e64579f5b71749d.jpg" alt="17"></p>
+</li>
+<li><p><del>点击<code>1</code>add_fields后选择<code>2</code>指定用户， 并将下两栏留空：</del>此处应与下条create设置相同（选择你所创建的用户）：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/14a8cb37062693d768ad.jpg" alt="18"></p>
+</li>
+<li><p>点击<code>1</code>create后选择<code>2</code>指定用户， 在<code>3</code>处键入用户名，点击<code>4</code>处后点击<code>5</code>处添加：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/d91714cfd703ef42b94c.jpg" alt="19"></p>
+<p>完成此步操作后，界面应与图示类似：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/c05e7ec9218820baf412.jpg" alt="20"></p>
+</li>
+<li><p>点击<code>1</code>delete后选择<code>2</code>指定用户， 并将下两栏留空：</p>
+<p><img src="https://lc-cqha0xyi.cn-n1.lcfile.com/c37b6e20726cfb1d3197.jpg" alt="21"></p>
+</li>
+</ul>
+<p>至此权限已设置完成，数据库记录只能在本地增删。</p>
+<p>每次运行<code>hexo d</code>部署的时候，插件都会扫描本地<code>source/_posts</code>下的文章并与数据库对比，然后在数据库创建没有录入数据库的文章记录。</p>
+<p>如果在<strong>博客配置文件</strong>中留空username或password，则在部署过程中程序会要求输入。</p>
+<hr>
+<p>原文链接：<a href="https://leaferx.online/2018/02/11/lc-security/">https://leaferx.online/2018/02/11/lc-security/</a></p>

@@ -1,0 +1,185 @@
+<h1 align="center">Math Equations</h1>
+
+<p>NexT provides two render engines for displaying Math Equations.</p>
+<p>If you choose to use this feature, you don’t need to manually import any JS or CSS. You just need to turn on <code>enable</code> of <code>math</code> and choose a render <code>engine</code> for it (located in <code>next/_config.yml</code>):</p>
+<pre><code class="yml"><span class="attr">math:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+  <span class="string">...</span>
+<span class="attr">  engine:</span> <span class="string">mathjax</span>
+</code></pre>
+<p>Notice: only turning on <code>enable</code> of <code>math</code> <strong>cannot let you see the displayed equations correctly</strong>, you need to install the <strong>corresponding Hexo Renderer</strong> to fully support the display of Math Equations. The corresponding Hexo Renderer per engine will be provided below.</p>
+<h2 align="center">Provided Render Engine</h2>
+
+<p>For now, NexT provides two Render Engines: <a href="https://www.mathjax.org/">MathJax</a> and <a href="https://khan.github.io/KaTeX/">Katex</a> (default is MathJax).</p>
+<h3 id="MathJax-default"><a href="#MathJax-default" class="headerlink" title="MathJax (default)"></a>MathJax (default)</h3><p>If you use MathJax to render Math Equations, you need to use <strong>only one of them</strong>: <a href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc</a> or <a href="https://github.com/sun11/hexo-renderer-kramed">hexo-renderer-kramed</a>.</p>
+<p>Firstly, you need to uninstall the original renderer <code>hexo-renderer-marked</code>, and install one of the renderer above:</p>
+<pre><code class="sh">npm un hexo-renderer-marked --save
+npm i hexo-renderer-pandoc --save <span class="comment"># or hexo-renderer-kramed</span>
+</code></pre>
+<p>Secondly, in <code>next/_config.yml</code>, turn on <code>enable</code> of <code>math</code> and choose <code>mathjax</code> as <code>engine</code>.</p>
+<pre><code class="yml"><span class="attr">math:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+  <span class="string">...</span>
+<span class="attr">  engine:</span> <span class="string">mathjax</span>
+  <span class="comment">#engine: katex</span>
+</code></pre>
+<p>Finally, run standard Hexo generate, deploy process or start the server:</p>
+<pre><code class="sh">hexo clean &amp;&amp; hexo g -d
+<span class="comment"># or hexo clean &amp;&amp; hexo s</span>
+</code></pre>
+<h4 id="Numbering-and-referring-equations-in-MathJax"><a href="#Numbering-and-referring-equations-in-MathJax" class="headerlink" title="Numbering and referring equations in MathJax"></a>Numbering and referring equations in MathJax</h4><p>In the new version of NexT, we have added feature to automatically number equations and to refer to equations. We briefly describe how to use this feature below.</p>
+<p>In general, to make the automatic equation numbering work, you have to wrap your LaTeX equations in <code>equation</code> environment. Using the plain old style (i.e., wrap an equation with two dollar signs in each side) will not work. How to refer to an equation? Just give a <code>\label{}</code> tag and then in your later text, use <code>\ref{}</code> or <code>\eqref{}</code> to refer it. Using <code>\eqref{}</code> is preferred since if you use <code>\ref{}</code>, there are no parentheses around the equation number. Below are some of the common scenarios for equation numbering.</p>
+<p>For simple equations, use the following form to give a tag,</p>
+<pre><code class="latex">$$\begin{equation}
+e=mc^2
+\end{equation}\label{eq1}$$
+</code></pre>
+<p>Then, you can refer to this equation in your text easily by using something like</p>
+<pre><code>the famous matter-energy equation $\eqref{eq1}$ proposed by Einstein ...
+</code></pre><p>For multi-line equations, inside the <code>equation</code> environment, you can use the <code>aligned</code> environment to split it into multiple lines:</p>
+<pre><code class="latex">$$\begin{equation}
+\begin{aligned}
+a &amp;= b + c \\
+  &amp;= d + e + f + g \\
+  &amp;= h + i
+\end{aligned}
+\end{equation}\label{eq2}$$
+</code></pre>
+<p>We can use <code>align</code> environment to align multiple equations. Each of these equations will get its own numbers.</p>
+<pre><code>$$\begin{align}
+a &amp;= b + c \label{eq3} \\
+x &amp;= yz \label{eq4}\\
+l &amp;= m - n \label{eq5}
+\end{align}$$
+</code></pre><p>In the <code>align</code> environment, if you do not want to number one or some equations, just <a href="https://tex.stackexchange.com/questions/17528/show-equation-number-only-once-in-align-environment">use <code>\nonumber</code></a> right behind these equations. Like the following:</p>
+<pre><code class="latex">$$\begin{align}
+-4 + 5x &amp;= 2+y \nonumber  \\
+ w+2 &amp;= -1+w \\
+ ab &amp;= cb
+\end{align}$$
+</code></pre>
+<p>Sometimes, you want to use more “exotic” style to refer your equation. You can use <code>\tag{}</code> to achieve this. For example:</p>
+<pre><code class="latex">$$x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}$$
+</code></pre>
+<p>For more information, you can visit the <a href="http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering">official MathJax documentation on equation numbering</a>. You can also visit this <a href="https://jdhao.github.io/2018/01/25/hexo-mathjax-equation-number/">post</a> for more details. </p>
+<h3 id="Katex"><a href="#Katex" class="headerlink" title="Katex"></a>Katex</h3><p>The Katex engine is a <strong>much faster</strong> math render engine compared to MathJax. And it could survive without JavaScript.</p>
+<p>But, what Katex supports is not as full as MathJax. You could check it from the Useful Links below.</p>
+<p>If you use Katex to render Math Equations, you need to use <strong>only one of those renderer</strong>: <a href="https://github.com/CHENXCHEN/hexo-renderer-markdown-it-plus">hexo-renderer-markdown-it-plus</a> or <a href="https://github.com/hexojs/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>.</p>
+<p>Firstly, you need to uninstall the original renderer <code>hexo-renderer-marked</code>, and <strong>install one of selected above</strong>.</p>
+<pre><code class="sh">npm un hexo-renderer-marked --save
+npm i hexo-renderer-markdown-it-plus --save
+<span class="comment"># or hexo-renderer-markdown-it</span>
+</code></pre>
+<p>Secondly, in <code>next/_config.yml</code>, turn on <code>enable</code> option of <code>math</code> and choose <code>katex</code> as render <code>engine</code>.</p>
+<pre><code class="yml"><span class="attr">math:</span>
+<span class="attr">  enable:</span> <span class="literal">true</span>
+  <span class="string">...</span>
+  <span class="comment">#engine: mathjax</span>
+<span class="attr">  engine:</span> <span class="string">katex</span>
+</code></pre>
+<p>Finally, run the standard Hexo generate, deploy process or start the server:</p>
+<pre><code class="sh">hexo clean &amp;&amp; hexo g -d
+<span class="comment"># or hexo clean &amp;&amp; hexo s</span>
+</code></pre>
+<h4 id="If-you-use-hexo-renderer-markdown-it"><a href="#If-you-use-hexo-renderer-markdown-it" class="headerlink" title="If you use hexo-renderer-markdown-it"></a>If you use hexo-renderer-markdown-it</h4><p>If you use <code>hexo-renderer-markdown-it</code>，you also need to add <code>markdown-it-katex</code> as its plugin：</p>
+<pre><code>npm i markdown-it-katex --save
+</code></pre><p>And then in <code>hexo/_config.yml</code> you need to add <code>markdown-it-katex</code> as a plugin for <code>hexo-renderer-markdown-it</code>:</p>
+<pre><code class="yml"><span class="comment"># config of hexo-renderer-markdown-it</span>
+<span class="attr">markdown:</span>
+<span class="attr">  render:</span>
+<span class="attr">    html:</span> <span class="literal">true</span>
+<span class="attr">    xhtmlOut:</span> <span class="literal">false</span>
+<span class="attr">    breaks:</span> <span class="literal">true</span>
+<span class="attr">    linkify:</span> <span class="literal">true</span>
+<span class="attr">    typographer:</span> <span class="literal">true</span>
+<span class="attr">    quotes:</span> <span class="string">'“”‘’'</span>
+<span class="attr">  plugins:</span>
+<span class="bullet">    -</span> <span class="string">markdown-it-katex</span>
+</code></pre>
+<h4 id="Known-Bugs"><a href="#Known-Bugs" class="headerlink" title="Known Bugs"></a>Known Bugs</h4><ol>
+<li>Firstly, please check <a href="https://github.com/Khan/KaTeX#common-issues">Common Issues</a> of Katex.</li>
+<li>Displayed Math (i.e. <code>$$...$$</code>) needs to started with new clear line.\<br>In other words: you must not have any characters (except of whitespaces) <strong>before the opening <code>$$</code> and after the ending <code>$$</code></strong> (<a href="https://github.com/theme-next/hexo-theme-next/pull/32#issuecomment-357489509">comment #32</a>).</li>
+<li>Don’t support Unicode (<a href="https://github.com/theme-next/hexo-theme-next/pull/32#issuecomment-357489509">comment #32</a>).</li>
+<li>Inline Math (..<code>$...$</code>) must not have white spaces <strong>after the opening <code>$</code> and before the ending <code>$</code></strong> (<a href="https://github.com/theme-next/hexo-theme-next/pull/32#issuecomment-357489509">comment #32</a>).</li>
+<li>If you use math in Heading (i.e. <code>## Heading</code>).\<br>Then in corresponding TOC item it will show the related LaTex code 3 times (<a href="https://github.com/theme-next/hexo-theme-next/pull/32#issuecomment-359018694">comment #32</a>).</li>
+<li>If you use math in your post’s title, it will not be rendered (<a href="https://github.com/theme-next/hexo-theme-next/pull/32#issuecomment-359142879">comment #32</a>).</li>
+</ol>
+<p>We currently use Katex 0.7.1, some of those bugs might be caused by the outdated version of Katex we use.</p>
+<p>But, as what is described in the beginning, the render of Math Equations relies on Hexo Renderer. Currently, Katex-related renderers only support Katex version until 0.7.1.</p>
+<p>We will continuously monitor the updates of corresponding renderers, if there is a renderer which supports newer version of Katex, we will update the Katex we use.</p>
+<h3 id="Useful-Links"><a href="#Useful-Links" class="headerlink" title="Useful Links"></a>Useful Links</h3><ul>
+<li><a href="https://www.intmath.com/cg5/katex-mathjax-comparison.php">Speed test between Katex and MathJax</a></li>
+<li><a href="https://khan.github.io/KaTeX/function-support.html">Function support by Katex</a></li>
+</ul>
+<h2 align="center">Configuration Specifications</h2>
+
+<p>ATTENTION! When you edit those configs, <strong>don’t change indentation!</strong></p>
+<p>Currently, all NexT config use <strong>2 spaces indents</strong>.</p>
+<p>If your content of config is put just directly after the config name, then a space is needed between the colon and the config content (i.e. <code>enable: true</code>)</p>
+<pre><code class="yml"><span class="comment"># Math Equations Render Support</span>
+<span class="attr">math:</span>
+<span class="attr">  enable:</span> <span class="literal">false</span>
+
+  <span class="comment"># Default(true) will load mathjax/katex script on demand</span>
+  <span class="comment"># That is it only render those page who has 'mathjax: true' in Front Matter.</span>
+  <span class="comment"># If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span>
+<span class="attr">  per_page:</span> <span class="literal">true</span>
+
+<span class="attr">  engine:</span> <span class="string">mathjax</span>
+  <span class="comment">#engine: katex</span>
+
+  <span class="comment"># hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.</span>
+<span class="attr">  mathjax:</span>
+    <span class="comment"># For newMathJax CDN (cdnjs.cloudflare.com) with fallback to oldMathJax (cdn.mathjax.org).</span>
+<span class="attr">    cdn:</span> <span class="string">//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span>
+    <span class="comment"># For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com).</span>
+    <span class="comment">#cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML</span>
+    <span class="comment"># For automatic detect latest version link to MathJax.js and get from Bootcdn.</span>
+    <span class="comment">#cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span>
+
+  <span class="comment"># hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin)</span>
+  <span class="comment"># needed to full Katex support.</span>
+<span class="attr">  katex:</span>
+    <span class="comment"># Use Katex 0.7.1 as default</span>
+<span class="attr">    cdn:</span> <span class="string">//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css</span>
+    <span class="comment"># For whose visitors are mostly in China</span>
+    <span class="comment">#cdn: //cdn.bootcss.com/KaTeX/0.7.1/katex.min.css</span>
+    <span class="comment"># If you want to try the latest version of Katex, use one below instead</span>
+    <span class="comment">#cdn: //cdn.jsdelivr.net/katex/latest/katex.min.css</span>
+</code></pre>
+<h3 id="enable"><a href="#enable" class="headerlink" title="enable"></a>enable</h3><p><code>true</code> or <code>false</code>, default is <code>false</code>.</p>
+<p><code>true</code> to turn on render of Math Equations, <code>false</code> to turn off it.</p>
+<h3 id="per-page"><a href="#per-page" class="headerlink" title="per_page"></a>per_page</h3><p><code>true</code> or <code>false</code>, default is <code>true</code>.</p>
+<p>This option is to control whether to render Math Equations every page.</p>
+<p>The behavior of default (<code>true</code>) is to render Math Equations <strong>on demand</strong>.</p>
+<p>It will only render those posts which have <code>mathjax: true</code> in their Front Matter.</p>
+<p>For example:</p>
+<pre><code class="md">&lt;!-- This post will render the Math Equations --&gt;
+---
+title: 'Will Render Math'
+mathjax: true
+---
+....
+</code></pre>
+<pre><code class="md">&lt;!-- This post will NOT render the Math Equations --&gt;
+---
+title: 'Not Render Math'
+mathjax: false
+---
+....
+</code></pre>
+<pre><code class="md">&lt;!-- This post will NOT render the Math Equations either --&gt;
+---
+title: 'Not Render Math Either'
+---
+....
+</code></pre>
+<p>When you set it to <code>false</code>, the math will be rendered on <strong>EVERY PAGE</strong>.</p>
+<h3 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h3><p>Both MathJax and Katex provide a config <code>cdn</code>, if you don’t know what is <code>cdn</code>, <strong>do not touch it</strong>.</p>
+<p>Firstly, both MathJax and Katex use the <a href="https://www.jsdelivr.com/">jsDelivr</a> as the default CDN.</p>
+<p>The reason that jsDelivr is chosen is because it is fast everywhere, and jsDelivr has the valid ICP license issued by the Chinese government, it can be accessed in China pretty well.</p>
+<p>And we also provide other optional CDNs, including the famous <a href="https://cdnjs.com/">CDNJS</a> and the <a href="http://www.bootcdn.cn/">Bootcss</a> which has the quite high access speed in China.</p>
+<p>For MathJax, we are currently using version 2.7.1.</p>
+<p>For Katex, due to the problem described above, we are now using version 0.7.1.</p>
+<p>If you want to try the other CDNs not included in the optional list, you must use the corresponding version.</p>
+<p>Particularly, if you are a Chinese blogger or most of your visits come from China, please note that <strong>the CDNJS is blocked in some parts of China</strong>, don’t use it as your CDN.</p>

@@ -1,0 +1,72 @@
+<h1 align="center">Installation</h1>
+
+<h2 align="center">Step 1 &rarr; Go to Hexo dir</h2>
+
+<p>Change dir to <strong>hexo root</strong> directory. There must be <code>node_modules</code>, <code>source</code>, <code>themes</code> and other directories:</p>
+<pre><code class="sh">$ <span class="built_in">cd</span> hexo
+$ ls
+_config.yml  node_modules  package.json  public  scaffolds  <span class="built_in">source</span>  themes
+</code></pre>
+<h2 align="center">Step 2 &rarr; Get NexT</h2>
+
+<p align="center">Download theme from GitHub.</br><br>There are <b>3 options</b> to do it, need to <b>choose only one</b> of them.</p>
+
+<h3 id="Option-1-Download-latest-release-version"><a href="#Option-1-Download-latest-release-version" class="headerlink" title="Option 1: Download latest release version"></a>Option 1: Download <a href="https://github.com/theme-next/hexo-theme-next/releases/latest">latest release version</a></h3><p>   At most cases <strong>stable</strong>. Recommended for beginners.</p>
+<ul>
+<li><p>Install with <a href="http://lmgtfy.com/?q=linux+curl+tar+wget+install">curl &amp; tar &amp; wget</a>:</p>
+<pre><code class="sh">$ mkdir themes/next
+$ curl -s https://api.github.com/repos/theme-next/hexo-theme-next/releases/latest | grep tarball_url | cut -d <span class="string">'"'</span> -f 4 | wget -i - -O- | tar -zx -C themes/next --strip-components=1
+</code></pre>
+<p>This variant will give to you <strong>only latest release version</strong> (without <code>.git</code> directory inside).\<br>So, there is impossible to update this version with <code>git</code> later.\<br>Instead you always can use separate configuration (e.g. <a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/DATA-FILES.md">data-files</a>) and download new version inside old directory (or create new directory and redefine <code>theme</code> in Hexo config), without losing your old configuration.</p>
+</li>
+</ul>
+<h3 id="Option-2-Download-tagged-release-version"><a href="#Option-2-Download-tagged-release-version" class="headerlink" title="Option 2: Download tagged release version"></a>Option 2: Download <a href="https://github.com/theme-next/hexo-theme-next/releases">tagged release version</a></h3><p>   In rare cases useful, but not recommended.\<br>   You must define version. Replace <code>v6.0.0</code> with any version from <a href="https://github.com/theme-next/hexo-theme-next/tags">tags list</a>.</p>
+<ul>
+<li><p>Variant 1: Install with <a href="http://lmgtfy.com/?q=linux+curl+tar+install">curl &amp; tar</a>:</p>
+<pre><code class="sh">$ mkdir themes/next
+$ curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball/v6.0.0 | tar -zxv -C themes/next --strip-components=1
+</code></pre>
+<p>Same as above under <code>curl &amp; tar &amp; wget</code> variant, but will download <strong>only concrete version</strong>.</p>
+</li>
+<li><p>Variant 2: Install with <a href="http://lmgtfy.com/?q=linux+git+install">git</a>:</p>
+<pre><code class="sh">$ git <span class="built_in">clone</span> --branch v6.0.0 https://github.com/theme-next/hexo-theme-next themes/next
+</code></pre>
+<p>This variant will give to you the <strong>defined release version</strong> (with <code>.git</code> directory inside).\<br>And in any time you can switch to any tagged release, but with limit to defined version.</p>
+</li>
+</ul>
+<h3 id="Option-3-Download-latest-master-branch"><a href="#Option-3-Download-latest-master-branch" class="headerlink" title="Option 3: Download latest master branch"></a>Option 3: Download <a href="https://github.com/theme-next/hexo-theme-next/archive/master.zip">latest master branch</a></h3><p>   May be <strong>unstable</strong>, but includes latest features. Recommended for advanced users and for developers.</p>
+<ul>
+<li><p>Variant 1: Install with <a href="http://lmgtfy.com/?q=linux+curl+tar+install">curl &amp; tar</a>:</p>
+<pre><code class="sh">$ mkdir themes/next
+$ curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball | tar -zxv -C themes/next --strip-components=1
+</code></pre>
+<p>Same as above under <code>curl &amp; tar &amp; wget</code> variant, but will download <strong>only latest master branch version</strong>.\<br>At some cases useful for developers.</p>
+</li>
+<li><p>Variant 2: Install with <a href="http://lmgtfy.com/?q=linux+git+install">git</a>:</p>
+<pre><code class="sh">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next
+</code></pre>
+<p>This variant will give to you the <strong>whole repository</strong> (with <code>.git</code> directory inside).\<br>And in any time you can <a href="https://github.com/theme-next/hexo-theme-next/blob/master/README.md#update">update current version with git</a> and switch to any tagged release or on latest master or any other branch.\<br>At most cases useful as for users and for developers.</p>
+<p>Get tags list:</p>
+<pre><code class="sh">$ <span class="built_in">cd</span> themes/next
+$ git tag -l
+…
+v6.0.0
+v6.0.1
+v6.0.2
+</code></pre>
+<p>For example, you want to switch on <code>v6.0.1</code> <a href="https://github.com/theme-next/hexo-theme-next/tags">tagged release version</a>. Input the following command:</p>
+<pre><code class="sh">$ git checkout tags/v6.0.1
+Note: checking out <span class="string">'tags/v6.0.1'</span>.
+…
+HEAD is now at da9cdd2... Release v6.0.1
+</code></pre>
+<p>And if you want to switch back on <a href="https://github.com/theme-next/hexo-theme-next/commits/master">master branch</a>, input this command:</p>
+<pre><code class="sh">$ git checkout master
+</code></pre>
+</li>
+</ul>
+<h2 align="center">Step 3 &rarr; Set it up</h2>
+
+<p>Set theme in main <strong>hexo root config</strong> <code>_config.yml</code> file:</p>
+<pre><code class="yml"><span class="attr">theme:</span> <span class="string">next</span>
+</code></pre>

@@ -1,0 +1,173 @@
+<div align="right">语言：<a title="英语" href="../../.github/CONTRIBUTING.md">:us:</a><br>:cn:<br><a title="俄语" href="../ru/CONTRIBUTING.md">:ru:</a></div>
+
+<h1 id="e-x-T"><a href="#e-x-T" class="headerlink" title=" e x T"></a><div align="center"><a title="Go to homepage" href="https://theme-next.org"><img align="center" width="56" height="56" src="https://raw.githubusercontent.com/theme-next/hexo-theme-next/master/source/images/logo.svg?sanitize=true"></a> e x T</div></h1><p>首先，非常感谢大家抽出宝贵时间来让我们的 NexT 主题越变越好。在这里，我们介绍一下 <a href="https://github.com/theme-next">NexT 主题及其子模块</a>的开源贡献指南。不过，我们希望大家不要局限于此，更欢迎大家随时进行补充。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#how-can-i-contribute">如何为 Next 做贡献</a></p>
+<ul>
+<li><a href="#before-submitting-an-issue">你需要了解的</a></li>
+<li><a href="#reporting-bugs">反馈 Bug</a></li>
+<li><a href="#suggesting-enhancements">提交功能需求</a></li>
+<li><a href="#submitting-a-pull-request">提交合并请求</a></li>
+<li><a href="#creating-releases">发布版本</a></li>
+</ul>
+<p><a href="#guides">规范</a></p>
+<ul>
+<li><a href="#coding-rules">行为规范</a></li>
+<li><a href="#coding-standards">编码规范</a></li>
+<li><a href="#labels-rules">标签规范</a></li>
+<li><a href="#commit-messages-rules">提交信息规范</a></li>
+</ul>
+<p><a name="how-can-i-contribute"></a></p>
+<h2 id="如何为-Next-做贡献"><a href="#如何为-Next-做贡献" class="headerlink" title="如何为 Next 做贡献"></a>如何为 Next 做贡献</h2><p>目前 Next 主题已经从 <a href="https://github.com/iissnan/hexo-theme-next">iissnan</a> 的个人仓库移动到了 <a href="https://github.com/theme-next">Theme-Next</a> 组织仓库中，并升级到 V6 版本。在 V6+ 版本中，<code>next/source/lib</code> 目录下的第三方依赖库将独立放置在 <a href="https://github.com/theme-next">Theme-Next</a> 组织仓库中。在大多数情况下，NexT V5 版本仍然能够正常运行，但是如果你想获得更多的功能和帮助，还是建议您<a href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/UPDATE-FROM-5.1.X.md">升级到 NexT V6+ 版本</a>，并移步 <a href="https://github.com/theme-next/hexo-theme-next">Theme-Next</a> 仓库。</p>
+<p><a name="before-submitting-an-issue"></a></p>
+<h3 id="你需要了解的"><a href="#你需要了解的" class="headerlink" title="你需要了解的"></a>你需要了解的</h3><p>如果你在使用过程中遇到了问题，你可以查阅 FAQs（建设中） 或者 <a href="https://theme-next.org/docs/">NexT 帮助文档</a>（建设中）。另外，你也可以通过<a href="https://github.com/theme-next/hexo-theme-next/search?q=&amp;type=Issues&amp;utf8=%E2%9C%93">这里</a>进行大致检索，有些问题已经得到解答，你可以自行解决。对于没有解决的 Issue，你也可以继续提问。</p>
+<p>如果你在使用过程中发现了 Bug，请再次确认 Bug 在<a href="https://github.com/theme-next/hexo-theme-next/releases/latest">最新发布版本</a>中是否重现。如果 Bug 重现，欢迎你到我们的 <a href="https://github.com/theme-next/hexo-theme-next">Theme-NexT 仓库</a>中<a href="#reporting-bugs">反馈 Bug </a> 和<a href="#suggesting-enhancements">提交功能需求</a>，也更期待您<a href="#submitting-a-pull-request">提交合并请求</a></p>
+<p><a name="reporting-bugs"></a></p>
+<h3 id="反馈-Bug"><a href="#反馈-Bug" class="headerlink" title="反馈 Bug"></a>反馈 Bug</h3><p>反馈 Bug 前，请再次确认您已经查看了<a href="#before-submitting-an-issue">你需要了解的</a>内容，避免提交重复的 Issue。确定相关仓库后，创建 Issue 并按照<a href="../../.github/ISSUE_TEMPLATE.md">模板</a>尽可能的详细填写相关信息。</p>
+<p>请认真遵守如下指南，这样我们才能更好地理解问题，重现问题和解决问题。</p>
+<ul>
+<li>在标题中清晰准确地描述你的问题。</li>
+<li>参照如下问题尽可能多的提供信息：<ul>
+<li>Bug 是否能够重现？是一直出现还是偶尔出现？</li>
+<li>Bug 是从什么时候开始发生的？</li>
+<li>如果 Bug 突然发生，使用<a href="https://github.com/theme-next/hexo-theme-next/releases">旧版本主题</a>是否能够重现 Bug？又是从哪个版本开始出现 Bug？</li>
+<li>你所使用 Node，Hexo 以及 Next 的版本号多少？你可以运行 <code>node -v</code> 和 <code>hexo version</code> 获取版本号，或者查看文件 <code>package.json</code> 的内容。</li>
+<li>你使用了哪些插件包？查看文件 <code>package.json</code> 的内容即可获取。</li>
+</ul>
+</li>
+<li>一步步详细你是如何重现 Bug 的，做了什么，使用了哪些功能等等。如果你需要展示代码段，请使用 <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/">Markdown 代码块</a> 或 <a href="https://help.github.com/articles/creating-a-permanent-link-to-a-code-snippet/">Github 预览链接</a> 或 <a href="https://gist.github.com/">Gist 链接</a>。</li>
+<li>提供 Bug 的样例，如图像文件、在线演示网址等等。</li>
+<li>详细描述通过上述重现过程出现的问题。</li>
+<li>详细描述你期待的结果。</li>
+</ul>
+<p><a name="suggesting-enhancements"></a></p>
+<h3 id="提交功能需求"><a href="#提交功能需求" class="headerlink" title="提交功能需求"></a>提交功能需求</h3><p>提交功能需求前，请再次确认您已经查看了<a href="#before-submitting-an-issue">你需要了解的</a>内容，避免提交重复的 Issue。确定相关仓库后，创建 Issue 并按照<a href="../../.github/ISSUE_TEMPLATE.md">模板</a>尽可能的详细填写相关信息。</p>
+<p>请认真遵守如下指南，这样我们才能更好地理解和开发功能需求:pencil:：</p>
+<ul>
+<li>在标题中清晰准确地描述你的功能需求。</li>
+<li>详细描述目前所具有的功能和你所期待的功能，并解释为什么需要该功能。</li>
+<li>提供功能需求的样例，如图像文件、在线演示网址等等。</li>
+</ul>
+<p><a name="submitting-a-pull-request"></a></p>
+<h3 id="提交合并请求"><a href="#提交合并请求" class="headerlink" title="提交合并请求"></a>提交合并请求</h3><p>提交合并请求前，请再次确认您已经查看了<a href="#before-submitting-an-issue">你需要了解的</a>内容，避免提交重复的合并请求。确定相关仓库后，创建合并请求。更多详细操作过程可以查看<a href="https://help.github.com/articles/creating-a-pull-request/">帮助文档</a>。</p>
+<ol>
+<li>进入 <a href="https://github.com/theme-next/hexo-theme-next">hexo-theme-next</a> 源仓库，点击<code>Fork</code>。</li>
+<li>进入到已经<code>Fork</code>的个人仓库（<code>https://github.com/username/hexo-theme-next</code>），点击 <strong>Clone or download</strong> 并复制该仓库地址。选择本地文件夹，并打开 Git Bash ，输入如下命令并回车，即可完成仓库克隆。<pre><code class="bash">$ git <span class="built_in">clone</span> git@github.com:username/hexo-theme-next.git
+</code></pre>
+</li>
+<li>进入 <code>hexo-theme-next</code> 本地文件夹，并创建分支。<pre><code class="bash">$ <span class="built_in">cd</span> hexo-theme-next
+$ git checkout -b patchname
+</code></pre>
+</li>
+<li>本地修改并测试，推送分支。<pre><code class="bash">$ git add .
+$ git commit -m <span class="string">"add commit messamge"</span>
+$ git push origin patchname
+</code></pre>
+</li>
+<li>进入 <code>fork</code> 后的仓库，切换到新提交的 <code>patchname</code> 分支，点击 <code>patchname</code> 分支右侧的 <strong>New pull request</strong> 。在 PR 对比页面，正确选择你需要发起合并请求的分支，然后点击 <strong>Create pull request</strong> ，建立一个新的合并申请并描述变动。</li>
+</ol>
+<p>请认真遵守如下指南，这样我们才能更好地理解你的合并请求：</p>
+<ul>
+<li>创建合并请求时，请遵守<a href="#coding-rules">编码规范</a>和<a href="#commit-messages-rules">提交信息规范</a>。</li>
+<li>在标题中清晰准确地描述你的合并请求，不要加入 Issue 编号。</li>
+<li>按照<a href="../../.github/PULL_REQUEST_TEMPLATE.md">模板</a>尽可能的详细填写相关信息。</li>
+<li>合并请求需要在所有主题样式中测试通过，并提供所表现功能的样例，如图像文件、在线演示网址等等。</li>
+</ul>
+<p><a name="creating-releases"></a></p>
+<h3 id="发布版本"><a href="#发布版本" class="headerlink" title="发布版本"></a>发布版本</h3><p>版本发布是将项目发布给用户的一种很好的方式。</p>
+<ol>
+<li>进入 GitHub 项目主页，点击 <strong>Releases</strong> 和 <strong>Draft a new release</strong>。</li>
+<li>输入你需要发布的版本号。版本控制是基于 <a href="https://git-scm.com/book/en/Git-Basics-Tagging">Git tags</a> 工作的，建议按照 <a href="https://github.com/theme-next/hexo-theme-next/issues/187">About Major and Minor NexT versions</a> 确定版本号。</li>
+<li>确定你需要发布的分支。除非发布测试版本，通常情况下选择 <code>master</code> 分支。</li>
+<li>输入发布版本的标题和说明。<ul>
+<li>标题为版本号。</li>
+<li>所有内容更改的类型包括了 <strong>Breaking Changes</strong>, <strong>Updates</strong>, <strong>Features</strong> 和 <strong>Bugfixes</strong>。在描述 Breaking Changes 时，使用二级标题分别陈述，描述其他类型时，使用项目列表陈述。</li>
+<li>使用被动语态，省略主语。</li>
+<li>所有的变化都需要记录在版本说明中。对于没有使用 PR 的更改，需要添加相应的 commit 编号。如果使用了 PR 进行合并修改，则直接添加相应的 PR 编号即可。</li>
+</ul>
+</li>
+<li>如果您希望随版本一起发布二进制文件（如编译的程序），请在上传二进制文件对话框中手动拖放或选择文件。</li>
+<li>如果版本不稳定，请选择 <strong>This is a pre-release</strong>，以通知用户它尚未完全准备好。如果您准备公布您的版本，请点击 <strong>Publish release</strong>。否则，请单击 <strong>Save draft</strong> 以稍后处理。</li>
+</ol>
+<p><a name="guides"></a></p>
+<h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><a name="coding-rules"></a></p>
+<h3 id="行为规范"><a href="#行为规范" class="headerlink" title="行为规范"></a>行为规范</h3><p>为了保证本项目的顺利运作，所有参与人都需要遵守<a href="CODE_OF_CONDUCT.md">行为规范</a>。</p>
+<p><a name="coding-standards"></a></p>
+<h3 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h3><p>未完待续。</p>
+<p><a name="labels-rules"></a></p>
+<h3 id="标签规范"><a href="#标签规范" class="headerlink" title="标签规范"></a>标签规范</h3><p>为了方便维护人员和用户能够快速找到他们想要查看的问题，我们使用“标签”功能对拉取请求和问题进行分类。</p>
+<p>如果您不确定某个标签的含义，或者不知道将哪些标签应用于拉取请求或问题，千万别错过这个。</p>
+<p>Issues 的标签：使用<code>类型</code>+<code>内容</code>+<code>结果</code>的组合</p>
+<ul>
+<li>类型<ul>
+<li><code>Irrelevant</code>: 与主题 Next 无关的 Issue</li>
+<li><code>Duplicate</code>: 已经存在同样 Issue</li>
+<li><code>Bug</code>: 提出了 Bug，等待确认</li>
+<li><code>Discussion</code>: 需要讨论的 Issue</li>
+<li><code>Question</code>: 有关咨询的 Issue</li>
+<li><code>Feature-Request</code>: 提出了特性需求的 Issue</li>
+<li><code>Backlog</code>: 待解决的 Issue</li>
+</ul>
+</li>
+<li>内容<ul>
+<li><code>Roadmap</code>: 与主题 Next 发展相关的 Issue</li>
+<li><code>Hexo</code>: 与 Hexo 相关的 Issue</li>
+<li><code>Scheme [1] - Mist</code>: 与样式 Mist 相关的 Issue</li>
+<li><code>Scheme [2] - Muse</code>: 与样式 Muse 相关的 Issue</li>
+<li><code>Scheme [3] - Pisces</code>: 与样式 Pisces 相关的 Issue</li>
+<li><code>Scheme [4] - Gemini</code>: 与样式 Gemini 相关的 Issue</li>
+<li><code>3rd party service</code>: 与第三方服务相关的 Issue</li>
+<li><code>Docs</code>: 需要添加文档说明的 Issue</li>
+<li><code>Configurations</code>: 与主题 Next 设置相关的 Issue</li>
+<li><code>CSS</code>: 与主题 Next CSS 文件相关的 Issue</li>
+<li><code>Custom</code>: 与主题 Next 个性化相关的 Issue</li>
+<li><code>Optimization</code>: 需要进行优化的 Issue</li>
+</ul>
+</li>
+<li>结果<ul>
+<li><code>Wontfix</code>: 不能或不被修复的 Issue</li>
+<li><code>Need More Info</code>: 需要更多信息的 Issue</li>
+<li><code>Need Confirm</code>: 需要开发人员或用户确认的 Issue</li>
+<li><code>Can&#39;t Reproduce</code>: 不能被重现的 Issue</li>
+<li><code>Verified</code>: 已经被确认的 Issue</li>
+<li><code>Help wanted</code>: 需要帮助的 Issue</li>
+<li><code>Wait for Answer</code>: 需要开发人员或用户回复的 Issue</li>
+<li><code>Resolved Maybe</code>: 可能已经解决的 Issue</li>
+<li><code>Solved</code>: 已经解决的 Issue</li>
+<li><code>Stale</code>: 由于长期无人回应被封存的 Issue</li>
+</ul>
+</li>
+</ul>
+<p>Pull requests 的标签：</p>
+<ul>
+<li><code>Breaking Change</code>: 涉及主题 Next 重大架构的 Pull request</li>
+<li><code>Bugfix</code>: 修复 Bug 的 Pull request</li>
+<li><code>Docs</code>: 添加了文档说明的 Pull request</li>
+<li><code>Feature</code>: 添加了新特性的 Pull request</li>
+<li><code>Configurations</code>: 涉及主题 Next 配置的 Pull request</li>
+<li><code>Optimization</code>: 优化了主题 Next 的 Pull request</li>
+<li><code>i18n</code>: 更新了翻译的 Pull request</li>
+<li><code>Performance</code>: 提高了主题 Next 性能的 Pull request</li>
+<li><code>Discussion</code>: 需要进行讨论的 Pull request</li>
+</ul>
+<p><a name="commit-messages-rules"></a></p>
+<h3 id="提交信息规范"><a href="#提交信息规范" class="headerlink" title="提交信息规范"></a>提交信息规范</h3><p>我们对项目的 git 提交信息格式进行统一格式约定，每条提交信息由 <code>type</code>+<code>subject</code> 组成，这将提升项目日志的可读性。</p>
+<ul>
+<li><code>type</code> 用于表述此次提交信息的意义，首写字母大写，包括但不局限于如下类型：<ul>
+<li><code>Build</code>：基础构建系统或依赖库的变化</li>
+<li><code>Ci</code>：CI 构建系统及其脚本变化</li>
+<li><code>Docs</code>：文档内容变化</li>
+<li><code>Feat</code>：新功能</li>
+<li><code>Fix</code>：Bug 修复</li>
+<li><code>Perf</code>：性能优化</li>
+<li><code>Refactor</code>：重构（即不是新增功能，也不是修改 Bug 的代码变动）</li>
+<li><code>Style</code>：格式（不影响代码运行的变动）</li>
+<li><code>Revert</code>：代码回滚</li>
+<li><code>Release</code>：版本发布</li>
+</ul>
+</li>
+<li><code>subject</code> 用于简要描述修改变更的内容，如 <code>Update code highlighting in readme.md</code>。<ul>
+<li>句尾不要使用符号。</li>
+<li>使用现在时、祈使句语气。</li>
+</ul>
+</li>
+</ul>

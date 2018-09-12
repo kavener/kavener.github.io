@@ -1,0 +1,53 @@
+<h1 align="center">数据文件</h1>
+
+<p>目前，通过 pull 或下载新的 release 版本来更新 NexT 主题的体验并不平滑。当用户使用 <code>git pull</code> 更新 NexT 主题时经常需要解决冲突问题，而在手动下载 release 版本时也经常需要手动合并配置。</p>
+<p>现在来说，NexT 推荐用户存储部分配置在站点的 <code>_config.yml</code> 中，而另一部分在主题的 <code>_config.yml</code> 中。这一方式固然可用，但也有一些缺点：</p>
+<ol>
+<li>配置项被分裂为两部分；</li>
+<li>用户难以弄清何处存放配置选项。</li>
+</ol>
+<p>为了解决这一问题，NexT 将利用 Hexo 的<a href="https://hexo.io/docs/data-files.html">数据文件</a>特性。因为数据文件是在 Hexo 3 中被引入，所以你需要更新至 Hexo 3.0 以后的版本来使用这一特性。</p>
+<p>如果你仍然希望使用 Hexo 2.x，你依旧可以按老的方式进行配置。NexT 仍然兼容 Hexo 2.x（但可能会出现错误）。</p>
+<h2 align="center">选择 1：Hexo 方式</h2>
+
+<p>使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（<code>hexo/_config.yml</code>），并且不需要修改 <code>next/_config.yml</code>，或者创建什么其他的文件。但是所有的主题选项必须放置在 <code>theme_config</code> 后，并全部增加两个空格的缩进。</p>
+<p>如果在新的 release 中出现了任何新的选项，那么你只需要从 <code>next/_config.yml</code> 中将他们复制到 <code>hexo/_config.yml</code> 中并设置它们的值为你想要的选项。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><ol>
+<li>请确认不存在 <code>hexo/source/_data/next.yml</code> 文件（如果已存在，请删除）</li>
+<li>从主题的 <code>next/_config.yml</code> 文件中复制你需要的 NexT 配置项到 <code>hexo/_config.yml</code> 中，然后\<br>2.1. 所有这些配置项右移两个空格（在 Visual Studio Code 中：选中这些文字，<kbd>CTRL</kbd> + <kbd>]</kbd>）。\<br>2.2. 在这些参数最上方添加一行 <code>theme_config:</code>。</li>
+</ol>
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ul>
+<li><a href="https://hexo.io/zh-cn/docs/configuration.html">Hexo 配置</a></li>
+<li><a href="https://github.com/hexojs/hexo/pull/757">Hexo Pull #757</a></li>
+</ul>
+<h2 align="center">选择 2: NexT 方式</h2>
+
+<p>使用这一方式，你现在可以将你的全部配置置于同一位置（<code>source/_data/next.yml</code>），并且不需要修改 <code>next/_config.yml</code>。<br>但是可能无法让所有 Hexo 外部库都准确处理它们的附加选项（举个例子，<code>hexo-server</code> 模块只会从 Hexo 默认配置文件中读取选项）。</p>
+<p>如果在新的 release 中出现了任何新的选项，那么你只需要从 <code>next/_config.yml</code> 中将他们复制到 <code>source/_data/next.yml</code> 中并设置它们的值为你想要的选项。</p>
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><ol>
+<li>请确认你的 Hexo 版本为 3.0 或更高。</li>
+<li>在你站点的 <code>hexo/source/_data</code> 目录创建一个 <code>next.yml</code> 文件（如果 <code>_data</code> 目录不存在，请创建之）。</li>
+</ol>
+<p align="center">以上步骤之后有 <b>两种选择</b>，请<b>任选其一</b>然后<b>继续后面的步骤</b>。</p>
+
+<ul>
+<li><p><strong>选择 1：<code>override: false</code>（默认）</strong>：</p>
+<ol>
+<li>检查默认 NexT 配置中的 <code>override</code> 选项，必须设置为 <code>false</code>。\<br>在 <code>next.yml</code> 文件中，也要设置为 <code>false</code>，或者不定义此选项。</li>
+<li>从站点的 <code>_config.yml</code> 与主题的 <code>_config.yml</code> 中复制你需要的选项到 <code>hexo/source/_data/next.yml</code> 中。</li>
+</ol>
+</li>
+<li><p><strong>选择 2：<code>override: true</code></strong>：</p>
+<ol>
+<li>在 <code>next.yml</code> 中设置 <code>override</code> 选项为 <code>true</code>。</li>
+<li>从 <code>next/_config.yml</code> 配置文件中复制<strong>所有</strong>的 NexT 主题选项到 <code>hexo/source/_data/next.yml</code> 中。</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>然后，在站点的 <code>hexo/_config.yml</code>中需要定义 <code>theme: next</code> 选项（如果需要的话，<code>source_dir: source</code>）。</li>
+<li>使用标准参数来启动服务器，生成或部署（<code>hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</code>）。</li>
+</ol>
+<h3 id="相关链接-1"><a href="#相关链接-1" class="headerlink" title="相关链接"></a>相关链接</h3><ul>
+<li><a href="https://github.com/iissnan/hexo-theme-next/issues/328">NexT Issue #328</a></li>
+</ul>
